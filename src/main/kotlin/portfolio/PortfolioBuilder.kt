@@ -1,9 +1,7 @@
-import java.util.*
-
 class PortfolioBuilder {
 
     companion object{
-        fun build(price: Float, date: Date,
+        fun build(price: Float, date: TradingDate,
                   stocks: List<Pair<Float, String>>,
                   dataProvider: StockDataProvider): Portfolio {
             val total = stocks.map { it.first }.sum()

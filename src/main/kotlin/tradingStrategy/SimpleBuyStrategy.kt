@@ -1,5 +1,4 @@
 import tradingStrategy.config.TradingStrategyConfig
-import java.util.*
 
 class SimpleBuyStrategy(
     private val initialPortfolio: Portfolio,
@@ -9,9 +8,9 @@ class SimpleBuyStrategy(
 
     }
 
-    override fun value(date: Date): StockPeriodValue? {
+    override fun value(date: TradingDate): StockPeriodValue? {
         return config.dataProvider.value(initialPortfolio, date)
     }
 
-
 }
+

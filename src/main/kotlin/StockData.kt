@@ -2,21 +2,21 @@ import java.util.*
 
 interface StockData {
     val ticker: String
-    val values: Map<Date, StockPeriodValue>
-    val dividends: Map<Date, Float>
+    val values: HashMap<TradingDate, StockPeriodValue>
+    val dividends: HashMap<TradingDate, Float>
 }
 
 class StockDataImpl(
     override val ticker: String,
-    override val values: Map<Date, StockPeriodValue>,
-    override val dividends: Map<Date, Float>): StockData { }
+    override val values: HashMap<TradingDate, StockPeriodValue>,
+    override val dividends: HashMap<TradingDate, Float>): StockData { }
 
 class StockPriceDataSample(
-    val date: Date,
+    val date: TradingDate,
     val value: StockPeriodValue) { }
 
 class StockDividendDataSample(
-    val date: Date,
+    val date: TradingDate,
     val amount: Float) { }
 
 class StockPeriodValue(

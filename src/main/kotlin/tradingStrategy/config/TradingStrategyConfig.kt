@@ -1,17 +1,17 @@
 package tradingStrategy.config
 
 import StockDataProvider
-import java.util.*
+import TradingDate
 
 interface TradingStrategyConfig {
     val dataProvider: StockDataProvider
-    val startDate: Date
-    val endDate: Date
+    val startDate: TradingDate
+    val endDate: TradingDate
 }
 
 class BasicTradingStrategyConfig(
     override val dataProvider: StockDataProvider,
-    override val startDate: Date,
-    override val endDate: Date): TradingStrategyConfig {
+    override val startDate: TradingDate,
+    override val endDate: TradingDate): TradingStrategyConfig {
 
 }

@@ -1,5 +1,4 @@
 import java.io.File
-import java.text.SimpleDateFormat
 import java.util.*
 
 class FinDataReader(val pricesFile: File, val dividendsFile: File) {
@@ -7,8 +6,8 @@ class FinDataReader(val pricesFile: File, val dividendsFile: File) {
     fun makeData(): StockData {
         val pricesLines = pricesFile.readLines()
         val ticker = pricesFile.nameWithoutExtension
-        val values = mutableMapOf<Date, StockPeriodValue>()
-        val dividends = mutableMapOf<Date, Float>()
+        val values = HashMap<TradingDate, StockPeriodValue>()
+        val dividends = HashMap<TradingDate, Float>()
 
         for (i in 1 until pricesLines.size) {
             val line = pricesLines[i]
@@ -30,8 +29,8 @@ class FinDataReader(val pricesFile: File, val dividendsFile: File) {
     fun parseStockPriceData(csvLine: String): StockPriceDataSample {
         val values = csvLine.split(",") // Split the line by commas
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val date = dateFormat.parse(values[0])
+        val date = TradingDate(values[0])
+        print(csvLine)
         val open = values[1].toFloat()
         val high = values[2].toFloat()
         val low = values[3].toFloat()
@@ -43,8 +42,7 @@ class FinDataReader(val pricesFile: File, val dividendsFile: File) {
     fun parseStockDividendData(csvLine: String): StockDividendDataSample {
         val values = csvLine.split(",") // Split the line by commas
 
-        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-        val date = dateFormat.parse(values[0])
+        val date = TradingDate(values[0])
         val amount = values[1].toFloat()
 
         return StockDividendDataSample(date, amount)
